@@ -38,16 +38,26 @@ class NoMoreCards extends Component {
 export default class extends React.Component {
   constructor(props) {
     super(props);
+    var cards = [];
+    if (typeof props.persons !== 'undefined'){
+        props.persons.forEach((person)=>{cards.push({text:person.name, backgroundColor:'pink', name:person.name, person:person})});
+    }
     this.state = {
-      cards: [
-        {text: 'Tomato', backgroundColor: 'red', name:'Adrienne Tran'},
-        {text: 'Aubergine', backgroundColor: 'purple', name:'Micah Catlin'},
-        {text: 'Courgette', backgroundColor: 'green', name:'Benjamin Reinhardt'},
-      ]
+      cards: cards
     };
   }
 
-  handleYup (card) {
+  componentWillReceiveProps = (new_props) => {
+    var cards = [];
+    console.log("got new props!");
+    if (typeof new_props.persons !== 'undefined'){
+        new_props.persons.forEach((person)=>{cards.push({person:person, text:person.name, backgroundColor:'pink', name:person.name})});
+    }
+    this.setState({cards:cards});
+  }
+
+  handleYup = (card) => {
+    this.props.addTag(card.person.id);
     console.log(`Yup for ${card.text}`)
   }
   handleNope (card) {
