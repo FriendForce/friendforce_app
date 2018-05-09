@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Platform, StatusBar, StyleSheet, View, Text} from 'react-native';
+import { TextInput, Button, Platform, StatusBar, StyleSheet, View, Text} from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
@@ -55,7 +55,11 @@ export default class App extends React.Component {
   
         <View style={styles.container}>
         <Button onPress={this.load} title="Load People" />
-        <Text style={styles.text}> Does this person live in SF? </Text>
+        <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({label:text})}
+        value={this.state.label}
+        />
       	<SwipeCards style={{flex: 1}}
                     persons={this.state.persons}
                     addTag={this.addTag} />

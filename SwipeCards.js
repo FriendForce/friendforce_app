@@ -49,7 +49,6 @@ export default class extends React.Component {
 
   componentWillReceiveProps = (new_props) => {
     var cards = [];
-    console.log("got new props!");
     if (typeof new_props.persons !== 'undefined'){
         new_props.persons.forEach((person)=>{cards.push({person:person, text:person.name, backgroundColor:'pink', name:person.name})});
     }
